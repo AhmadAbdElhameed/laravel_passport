@@ -23,11 +23,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('register',[AuthenticationController::class,'register'])->name('register');
 Route::post('login',[AuthenticationController::class,'login'])->name('login');
 
-
-
 Route::middleware('auth:api')->group(function(){
     Route::post('logout',[AuthenticationController::class,'logout'])->name('logout');
-    Route::resource('products',AuthenticationController::class);
+    Route::resource('products',ProductController::class);
 });
 
 

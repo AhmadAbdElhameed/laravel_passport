@@ -23,31 +23,32 @@ class ProductController extends Controller
             'title' => $request->title,
             'description' => $request->description,
             'price' => $request->price,
+            'user_id' => $request->user()->id,
         ]);
 
         return response(['message' => 'Product Created Successfully!'],201);
     }
 
     public function show($id){
-        $product = Product::finddOrFail($id);
+        $product = Product::findOrFail($id);
 
         return response($product,201);
     }
 
     public function update(Request $request , $id){
-        $product = Product::finddOrFail($id);
+        $product = Product::findOrFail($id);
 
         $product->update([
             'title' => $request->title,
             'description' => $request->description,
             'price' => $request->price,
+            'user_id' => $request->user()->id,
         ]);
-
         return response(['message' => 'Product Updated Successfully!'],201);
     }
 
     public function destroy($id){
-        $product = Product::finddOrFail($id);
+        $product = Product::findOrFail($id);
         $product->delete();
         return response(['message' => 'Product Deleted Successfully'],201);
     }
